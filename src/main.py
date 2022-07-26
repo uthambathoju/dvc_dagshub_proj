@@ -62,7 +62,7 @@ def eval_model(clf, X, y):
 def submission(clf, X):
     sub = pd.read_csv(sub_df_path)
     sub[obj_col] = clf.predict(X)
-    sub.to_csv("data/submission.csv", index=False)   
+    sub.to_csv("submission/submission.csv", index=False)   
 
 
 def train():
@@ -83,7 +83,7 @@ def train():
         )
         model = fit_model(X_train, y_train)
         print("Saving trained model...")
-        joblib.dump(model, "Model/model.joblib")
+        joblib.dump(model, "models/model.joblib")
         logger.log_hyperparams(model_class=type(model).__name__)
         logger.log_hyperparams({"model": model.get_params()})
         print("Evaluating model...")
